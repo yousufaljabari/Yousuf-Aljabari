@@ -11,11 +11,11 @@ int ReadChoice()
 {
 	int Choice;
 	cout << "Choose What do you want to do? [1 to 6] ? ";
-	cin >> choice;
+	cin >> Choice;
 	while (cin.fail())
 	{
 		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 		cout << "invalid Choice , Enter a Vaild one " << endl;
 
@@ -229,30 +229,30 @@ void printClient(stClient Client)
 }
 void printClients(vector<stClient>& VClient)
 {
-	
+
 
 	VClient = SaveClientinVectorFromFile(ClientsFileName);
-	
-		cout << "\t\t\t\t\tClient List(" << VClient.size() << ") Client (S)\n";
-		cout << "-------------------------------------------------------------------------------------------------\n";
-		cout << "| " << left << setw(15) << "Account Number ";
-		cout << "| " << left << setw(10) << "Pin Code ";
-		cout << "| " << left << setw(40) << " Client Name";
-		cout << "| " << left << setw(12) << "Phone";
-		cout << "| " << left << setw(12) << "Balance";
-		cout << "\n-------------------------------------------------------------------------------------------------\n";
-		if (VClient.size() == 0)
-			cout << "\t\t\t\tNo Clients Available In the System!";
-		else
+
+	cout << "\t\t\t\t\tClient List(" << VClient.size() << ") Client (S)\n";
+	cout << "-------------------------------------------------------------------------------------------------\n";
+	cout << "| " << left << setw(15) << "Account Number ";
+	cout << "| " << left << setw(10) << "Pin Code ";
+	cout << "| " << left << setw(40) << " Client Name";
+	cout << "| " << left << setw(12) << "Phone";
+	cout << "| " << left << setw(12) << "Balance";
+	cout << "\n-------------------------------------------------------------------------------------------------\n";
+	if (VClient.size() == 0)
+		cout << "\t\t\t\tNo Clients Available In the System!";
+	else
+	{
+		for (stClient& C : VClient)
 		{
-			for (stClient& C : VClient)
-			{
-				printClient(C);
-				cout << endl;
-			}
+			printClient(C);
+			cout << endl;
 		}
-		cout << "\n-------------------------------------------------------------------------------------------------\n";
-	
+	}
+	cout << "\n-------------------------------------------------------------------------------------------------\n";
+
 }
 bool FindClientByAccountNumber(string AccountNumber, vector <stClient>& vclients, stClient& Client)
 {
@@ -378,10 +378,11 @@ void updateCLient(vector<stClient>& vClient, string AccountNumber)
 			LoadCleinrtsDataToFileForUpdate(ClientsFileName, vClient);
 			cout << "Clinet Updated Successfully." << endl;
 		}
-		else
-		{
-			cout << "Client with Account Number (" << AccountNumber << ") Not Found .. " << endl;
-		}
+
+	}
+	else
+	{
+		cout << "\nClient with Account Number (" << AccountNumber << ") Not Found .. " << endl;
 	}
 }
 double DepoistMoney(stClient& Client)
@@ -672,7 +673,7 @@ void printMainMenu(vector<stClient>& VClient)
 		cout << "=======================================================\n";
 		choice = ReadChoice();
 		startMainMenueScreen(choice, VClient);
-	} while (choice != 7 || choice>7);
+	} while (choice != 7 || choice > 7);
 	VClient = SaveClientinVectorFromFile(ClientsFileName);
 }
 int main()
