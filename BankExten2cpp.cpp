@@ -1390,7 +1390,7 @@ void login()
 	vector<stUser>vUsers=LoadUsersinVectorFromFile();
 	
 
-	stUser User;
+	
 	
 	string UserName;
 	string Password;
