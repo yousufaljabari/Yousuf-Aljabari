@@ -3,9 +3,9 @@
 #include <string> 
 #include <vector>
 #include <iomanip>
-
+#include <cstdlib> 
 using namespace std;
-
+void login();
 const string ClientsFileName = "MyClients.txt";
 const string UserFileName = "UsersFile1.txt";
 void NotAccsesPerMissions();
@@ -959,7 +959,7 @@ bool MarkforDeleteUser(string UserName, vector<stUser>&vUsers)
 	}
 	return false;
 }
-void AddUserinfoToFileAftetFlagDelete(vector<stUser>& vUser)
+void AddUserinfoToFileAfterFlagDelete(vector<stUser>& vUser)
 {
 
 	fstream UserFile;
@@ -982,7 +982,6 @@ void AddUserinfoToFileAftetFlagDelete(vector<stUser>& vUser)
 void DeleteUserinMenu()
 {
 	vector<stUser>vUsers;
-	
 	stUser User;
 	string UserName;
 	char DeleteUser;
@@ -998,7 +997,16 @@ void DeleteUserinMenu()
 			if (toupper(DeleteUser) == 'Y')
 			{
 				MarkforDeleteUser(UserName,vUsers);
-				AddUserinfoToFileAftetFlagDelete(vUsers);
+				AddUserinfoToFileAfterFlagDelete(vUsers);
+				
+					if (User.UserName ==GeneralUser.UserName )
+					{
+						vUsers = LoadUsersinVectorFromFile();
+						cout << "User Deleted successfully \n";
+						system("cls");
+						login();
+					}
+				
 				vUsers = LoadUsersinVectorFromFile();
 				cout << "User Deleted successfully \n";
 			}
@@ -1272,7 +1280,6 @@ void startMainMenueScreen(stUser& User, int Choice, vector<stClient>& VClients)
 	vector<stUser>vUsers;
 	vUsers = LoadUsersinVectorFromFile();
 	
-	stClient Client;
 	
 	
 	switch ((enMainMenuScreen)Choice)
@@ -1332,11 +1339,11 @@ void startMainMenueScreen(stUser& User, int Choice, vector<stClient>& VClients)
 	case enMainMenuScreen::Logout:
 	{
 		system("cls");
-		cout << "+++++++++++++++++++++++++++++\n";
-		cout << "End Login InterFace...\n";
-		cout << "++++++++++++++++++++++++++++++\n";
+		cout << "Press Enter Any Key to Go Login Screen ... ";
 		system("pause>0");
-		break;
+		system("cls");
+		login();
+		
 	}
 	}
 }
@@ -1390,7 +1397,7 @@ void login()
 	vector<stUser>vUsers=LoadUsersinVectorFromFile();
 	
 
-	
+	stUser User;
 	
 	string UserName;
 	string Password;
@@ -1433,4 +1440,5 @@ void login()
 int main()
 {
 	login();
+
 }
