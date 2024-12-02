@@ -1,11 +1,9 @@
-
 #include <iostream>
 #include <fstream>
 #include <string> 
 #include <vector>
 #include <iomanip>
 using namespace std;
-
 const string ClientsfileName = "Clients.txt";
 struct stClient
 {
